@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/main.dir/image_receive.cpp.o CMakeFiles/main.dir/image_send.cpp.o  -o ../../bin/main 

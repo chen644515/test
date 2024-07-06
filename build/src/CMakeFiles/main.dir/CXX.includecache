@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/chenxx/slam_image_send/src/image_receive.cpp
+bits/stdc++.h
+-
+
+/home/chenxx/slam_image_send/src/image_send.cpp
+bits/stdc++.h
+-
+
