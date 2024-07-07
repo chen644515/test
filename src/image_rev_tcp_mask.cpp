@@ -52,7 +52,7 @@ int main() {
     // 接收图像大小
     int count = 0;
     while (!should_exit) {
-        uint16_t imgSize;
+        uint32_t imgSize;
         // if (recv(newSocket, &imgSize, sizeof(imgSize), 0) == -1) {
         //     cerr << "Error: Failed to receive image size." << endl;
         //     close(newSocket);
@@ -70,7 +70,14 @@ int main() {
         // }
         int ret = 0;
         vector<uchar> head(6);
-        ret = recv(newSocket, head.data(), 6, 0);
+        for (int i = 0; i < 8; i++) {
+            uchar s;
+            ret = recv(newSocket, &s, 1, 0);
+            // if (ret != 1) {
+            //     std::cout << "error\n";
+            // }
+            head[i] = s;
+        }
         if (ret < 0) {
             std::cout << "rev head failed\n";
             continue;
@@ -79,7 +86,7 @@ int main() {
             break;
         } else {
             std::cout << "rev head successfully\n";
-            imgSize = (static_cast<uint16_t>(head[5]) << 8) | static_cast<uint16_t>(head[4]);
+            imgSize = (static_cast<uint16_t>(head[7]) << 24) | (static_cast<uint16_t>(head[6]) << 16) | (static_cast<uint16_t>(head[5]) << 8) | static_cast<uint16_t>(head[4]);
             std::cout << "head:" << head[0] << head[1] << head[2] << head[3] << (uint8_t)head[4]<< (uint8_t)head[5]<< '\n';
             std::cout << "size:" << imgSize << '\n';
         }
@@ -95,9 +102,9 @@ int main() {
             }
             buffer[i] = s;
         }
-        std::cout << "buffer.data:\n";
-        for (int i = imgSize - 1; i >= 0; i--) cout << buffer[i] << '\n';
-        std::cout << "\n\n\n";
+        // std::cout << "buffer.data:\n";
+        // for (int i = imgSize - 1; i >= 0; i--) cout << buffer[i] << '\n';
+        // std::cout << "\n\n\n";
         // 解码图像数据
         Mat image;
         try {

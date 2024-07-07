@@ -56,24 +56,26 @@ int ImageTCPSend::imageSend(cv::Mat &left, cv::Mat &right)
     cv::Mat image;
     std::vector<cv::Mat> a = {left, right};
     vconcat(a, image);
-    cv::resize(image, image, cv::Size(image.cols / 2, image.rows / 2));
+    cv::resize(image, image, cv::Size(image.cols* 2, image.rows * 2));
     vector<uchar> decode;
     imencode(".jpg", image, decode);
-    uint16_t len = decode.size();
+    uint32_t len = decode.size();
     std::cout << "size:" << len << '\n';
-    vector<uchar> buffer(len + 6);
+    vector<uchar> buffer(len + 8);
     buffer[0] = 'B';
     buffer[1] = 'F';
     buffer[2] = 'B';
     buffer[3] = 'F';
-    buffer[5] = static_cast<unsigned char>((len >> 8) & 0xFF);;
-    buffer[4] = static_cast<unsigned char>((len) & 0xFF);;
+    buffer[4] = static_cast<unsigned char>((len) & 0xFF);
+    buffer[5] = static_cast<unsigned char>((len >> 8) & 0xFF);
+    buffer[6] = static_cast<unsigned char>((len >> 16) & 0xFF);
+    buffer[7] = static_cast<unsigned char>((len >> 24) & 0xFF);
     std::cout << "head:" << buffer[0] << buffer[1] << buffer[2] << buffer[3] << (uint8_t)buffer[4] << (uint8_t)buffer[5] <<'\n';
 
     std::cout << "buffer.size:" << buffer.size() << "\n";
     for (int i = 0; i < len; i++) {
         // std::cout << i << ' ';
-        buffer[i + 6] = decode[i];
+        buffer[i + 8] = decode[i];
     }
     if (send(sock, buffer.data(), buffer.size(), 0) == -1) {
         std::cout << "Error: Failed to send image data.\n";
