@@ -2,6 +2,8 @@
 /home/chenxx/slam_image_send/build/CMakeFiles/edit_cache.dir
 /home/chenxx/slam_image_send/build/src/CMakeFiles/rebuild_cache.dir
 /home/chenxx/slam_image_send/build/src/CMakeFiles/edit_cache.dir
+/home/chenxx/slam_image_send/build/src/CMakeFiles/image_send_tcp_ask.dir
+/home/chenxx/slam_image_send/build/src/CMakeFiles/image_rev_tcp_ask.dir
 /home/chenxx/slam_image_send/build/src/CMakeFiles/image_rev_tcp_mask.dir
 /home/chenxx/slam_image_send/build/src/CMakeFiles/image_send_tcp_mask.dir
 /home/chenxx/slam_image_send/build/src/CMakeFiles/image_send_tcp.dir

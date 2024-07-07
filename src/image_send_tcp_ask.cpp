@@ -12,8 +12,8 @@ int m = 0;
 int image_width = 640;  // 图像宽度
 int image_height = 400;  // 图像高度
 
-#define SERVER_IP "127.0.0.1"
-#define PORT 12346
+#define SERVER_IP "192.168.3.123"
+#define PORT 12349
 #define BUFFER_SIZE 1024
 
 using namespace std;
@@ -94,6 +94,61 @@ int ImageTCPSend::imageSend(cv::Mat &left, cv::Mat &right)
     return 0;
 }
 
+#define PORT1 12348
+class AskRev {
+public:
+    int init();
+    int run();
+    ~AskRev() {
+        // 关闭套接字
+        close(newSocket);
+        close(serverSock);
+    }
+private:
+    int serverSock, newSocket;
+    struct sockaddr_in serverAddr;
+    struct sockaddr_storage serverStorage;
+    socklen_t addr_size;
+};
+
+int AskRev::init()
+{
+    // 创建 TCP 套接字
+    serverSock = socket(AF_INET, SOCK_STREAM, 0);
+
+    // 设置服务器地址
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(PORT1);
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+
+    // 绑定套接字
+    bind(serverSock, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
+    // 监听传入的连接
+    if (listen(serverSock, 10) == 0) {
+        cout << "Listening for incoming connections..." << endl;
+    } else {
+        cout << "Failed to listen" << endl;
+        return -1;
+    }
+    // 等待客户端连接
+    addr_size = sizeof(serverStorage);
+    newSocket = accept(serverSock, (struct sockaddr *) &serverStorage, &addr_size);
+    cout << "Client connected" << endl;
+    return 0;
+}
+
+int AskRev::run()
+{
+    int ret;
+    vector<uchar> rev(2);
+    for (int i = 0; i < 2; i++) {
+        uchar s;
+        ret = recv(newSocket, &s, 1, 0);
+        rev[i] = s;
+    }
+    if (rev[0] == 'O' && rev[1] == 'K') return 0;
+    return 0;
+}
 
 bool should_exit = false;
 void signalHandler(int signum)
@@ -108,11 +163,18 @@ bool compareNames(const std::string& a, const std::string& b) {
 }
 
 int main(int argc, char** argv) {
-    std::cout << "hello world!!!!!!!!!!!\n";
 
     ImageTCPSend imgSend;
+    AskRev askrev;
     std::cout << "start init socket\n";
     if (imgSend.init() != 0) {
+        std::cout << "init failed\n";
+        return 1;
+    } else {
+        std::cout << "init successfully\n";
+    }
+
+    if (askrev.init() != 0) {
         std::cout << "init failed\n";
         return 1;
     } else {
@@ -169,38 +231,23 @@ int main(int argc, char** argv) {
                 if (left_image.empty() || right_image.empty()) {
                     std::cout << "Failded\n";
                 } else {
-                    // cv::Mat image;
-                    // std::vector<cv::Mat> a = {left_image, right_image};
-                    // vconcat(a, image);
-                    // cv::resize(image, image, cv::Size(image.cols / 2, image.rows / 2));
-                    // std::cout << 1 << '\n';
-                    // vector<uchar> buffer;
-                    // imencode(".jpg", image, buffer);
-                    // std::cout << 2 << '\n';
-                    // int imgSize = buffer.size();
-                    // if (send(sock, &imgSize, sizeof(imgSize), 0) == -1) {
-                    //     std::cerr << "Error: Failed to send image size." << endl;
-                    //     return 1;
-                    // }
-                    // std::cout << 3 << '\n';
-                    // // Send the image data
-                    // if (send(sock, buffer.data(), imgSize, 0) == -1) {
-                    //     std::cerr << "Error: Failed to send image data." << endl;
-                    //     return 1;
-                    // }
-                    // usleep(200000);
-                    // cout << "send successfully\n";
-                    // std::cout << "count" << count << "***************************\n";
-                    // count++;
+                   
                     if (imgSend.imageSend(left_image, right_image) != 0) {
                         std::cout << "send image failed\n";
                     }
                     else {
                         std::cout << "iamge send successfully\n";
                     }
+
+                    if (askrev.run() != 0) {
+                        std::cout << "rev ask failded\n";
+                    }
+                    else {
+                        std::cout << "rev ask successfully\n";
+                    }
                     count++;
                     cout << "count:" << count << "***************\n";
-                    usleep(100000);
+                    // usleep(100000);
                     
                 }
             }

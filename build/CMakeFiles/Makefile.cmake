@@ -53,6 +53,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "src/CMakeFiles/image_send_tcp_ask.dir/DependInfo.cmake"
+  "src/CMakeFiles/image_rev_tcp_ask.dir/DependInfo.cmake"
   "src/CMakeFiles/image_rev_tcp_mask.dir/DependInfo.cmake"
   "src/CMakeFiles/image_send_tcp_mask.dir/DependInfo.cmake"
   "src/CMakeFiles/image_send_tcp.dir/DependInfo.cmake"

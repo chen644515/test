@@ -69,7 +69,7 @@ int main() {
         //     return 1;
         // }
         int ret = 0;
-        vector<uchar> head(6);
+        vector<uchar> head(8);
         for (int i = 0; i < 8; i++) {
             uchar s;
             ret = recv(newSocket, &s, 1, 0);
@@ -87,8 +87,8 @@ int main() {
         } else {
             std::cout << "rev head successfully\n";
             imgSize = (static_cast<uint16_t>(head[7]) << 24) | (static_cast<uint16_t>(head[6]) << 16) | (static_cast<uint16_t>(head[5]) << 8) | static_cast<uint16_t>(head[4]);
-            std::cout << "head:" << head[0] << head[1] << head[2] << head[3] << (uint8_t)head[4]<< (uint8_t)head[5]<< '\n';
-            std::cout << "size:" << imgSize << '\n';
+            // std::cout << "head:" << head[0] << head[1] << head[2] << head[3] << (uint8_t)head[4]<< (uint8_t)head[5]<< '\n';
+            // std::cout << "size:" << imgSize << '\n';
         }
         vector<uchar> buffer(imgSize);
         // if (recv(newSocket, buffer.data(), imgSize, 0) <= 0) {
@@ -97,8 +97,8 @@ int main() {
         // }
         for (int i = 0; i < imgSize; i++) {
             uchar s;
-            if (recv(newSocket, &s, 1, 0) != 1) {
-                std::cout << "rev data failed\n";
+            if (recv(newSocket, &s, 1, 0) <= 0) {
+                // std::cout << "rev data failed\n";
             }
             buffer[i] = s;
         }
@@ -122,20 +122,20 @@ int main() {
             close(serverSock);
             return 1;
         }
-        cv::resize(image, image, cv::Size(image.cols * 2, image.rows * 2));
-        // cv::imshow("image", image);
+        cv::resize(image, image, cv::Size(image.cols * 3, image.rows * 3));
+        cv::imshow("image", image);
  
         // 按ESC键退出循环
         if (cv::waitKey(1) == 27) {
             break;
         }
 
-        std::cout << "rev successfully\n";
+        // std::cout << "rev successfully\n";
         std::cout << "count" << count << "***************************\n";
         count++;
 
         // 显示接收到的图像
-        imshow("Received Image", image);
+        // imshow("Received Image", image);
         // waitKey(0);
     }
 

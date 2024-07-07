@@ -111,6 +111,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+src/CMakeFiles/image_send_tcp_ask.dir/rule:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/image_send_tcp_ask.dir/rule
+.PHONY : src/CMakeFiles/image_send_tcp_ask.dir/rule
+
+# Convenience name for target.
+image_send_tcp_ask: src/CMakeFiles/image_send_tcp_ask.dir/rule
+
+.PHONY : image_send_tcp_ask
+
+# fast build rule for target.
+image_send_tcp_ask/fast:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_send_tcp_ask.dir/build.make src/CMakeFiles/image_send_tcp_ask.dir/build
+.PHONY : image_send_tcp_ask/fast
+
+# Convenience name for target.
+src/CMakeFiles/image_rev_tcp_ask.dir/rule:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/image_rev_tcp_ask.dir/rule
+.PHONY : src/CMakeFiles/image_rev_tcp_ask.dir/rule
+
+# Convenience name for target.
+image_rev_tcp_ask: src/CMakeFiles/image_rev_tcp_ask.dir/rule
+
+.PHONY : image_rev_tcp_ask
+
+# fast build rule for target.
+image_rev_tcp_ask/fast:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_rev_tcp_ask.dir/build.make src/CMakeFiles/image_rev_tcp_ask.dir/build
+.PHONY : image_rev_tcp_ask/fast
+
+# Convenience name for target.
 src/CMakeFiles/image_rev_tcp_mask.dir/rule:
 	cd /home/chenxx/slam_image_send/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/image_rev_tcp_mask.dir/rule
 .PHONY : src/CMakeFiles/image_rev_tcp_mask.dir/rule
@@ -197,6 +227,33 @@ image_rev_tcp.cpp.s:
 	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_rev_tcp.dir/build.make src/CMakeFiles/image_rev_tcp.dir/image_rev_tcp.cpp.s
 .PHONY : image_rev_tcp.cpp.s
 
+image_rev_tcp_ask.o: image_rev_tcp_ask.cpp.o
+
+.PHONY : image_rev_tcp_ask.o
+
+# target to build an object file
+image_rev_tcp_ask.cpp.o:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_rev_tcp_ask.dir/build.make src/CMakeFiles/image_rev_tcp_ask.dir/image_rev_tcp_ask.cpp.o
+.PHONY : image_rev_tcp_ask.cpp.o
+
+image_rev_tcp_ask.i: image_rev_tcp_ask.cpp.i
+
+.PHONY : image_rev_tcp_ask.i
+
+# target to preprocess a source file
+image_rev_tcp_ask.cpp.i:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_rev_tcp_ask.dir/build.make src/CMakeFiles/image_rev_tcp_ask.dir/image_rev_tcp_ask.cpp.i
+.PHONY : image_rev_tcp_ask.cpp.i
+
+image_rev_tcp_ask.s: image_rev_tcp_ask.cpp.s
+
+.PHONY : image_rev_tcp_ask.s
+
+# target to generate assembly for a file
+image_rev_tcp_ask.cpp.s:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_rev_tcp_ask.dir/build.make src/CMakeFiles/image_rev_tcp_ask.dir/image_rev_tcp_ask.cpp.s
+.PHONY : image_rev_tcp_ask.cpp.s
+
 image_rev_tcp_mask.o: image_rev_tcp_mask.cpp.o
 
 .PHONY : image_rev_tcp_mask.o
@@ -251,6 +308,33 @@ image_send_tcp.cpp.s:
 	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_send_tcp.dir/build.make src/CMakeFiles/image_send_tcp.dir/image_send_tcp.cpp.s
 .PHONY : image_send_tcp.cpp.s
 
+image_send_tcp_ask.o: image_send_tcp_ask.cpp.o
+
+.PHONY : image_send_tcp_ask.o
+
+# target to build an object file
+image_send_tcp_ask.cpp.o:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_send_tcp_ask.dir/build.make src/CMakeFiles/image_send_tcp_ask.dir/image_send_tcp_ask.cpp.o
+.PHONY : image_send_tcp_ask.cpp.o
+
+image_send_tcp_ask.i: image_send_tcp_ask.cpp.i
+
+.PHONY : image_send_tcp_ask.i
+
+# target to preprocess a source file
+image_send_tcp_ask.cpp.i:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_send_tcp_ask.dir/build.make src/CMakeFiles/image_send_tcp_ask.dir/image_send_tcp_ask.cpp.i
+.PHONY : image_send_tcp_ask.cpp.i
+
+image_send_tcp_ask.s: image_send_tcp_ask.cpp.s
+
+.PHONY : image_send_tcp_ask.s
+
+# target to generate assembly for a file
+image_send_tcp_ask.cpp.s:
+	cd /home/chenxx/slam_image_send/build && $(MAKE) -f src/CMakeFiles/image_send_tcp_ask.dir/build.make src/CMakeFiles/image_send_tcp_ask.dir/image_send_tcp_ask.cpp.s
+.PHONY : image_send_tcp_ask.cpp.s
+
 image_send_tcp_mask.o: image_send_tcp_mask.cpp.o
 
 .PHONY : image_send_tcp_mask.o
@@ -286,6 +370,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... image_send_tcp_ask"
+	@echo "... image_rev_tcp_ask"
 	@echo "... image_rev_tcp_mask"
 	@echo "... image_send_tcp_mask"
 	@echo "... image_send_tcp"
@@ -293,12 +379,18 @@ help:
 	@echo "... image_rev_tcp.o"
 	@echo "... image_rev_tcp.i"
 	@echo "... image_rev_tcp.s"
+	@echo "... image_rev_tcp_ask.o"
+	@echo "... image_rev_tcp_ask.i"
+	@echo "... image_rev_tcp_ask.s"
 	@echo "... image_rev_tcp_mask.o"
 	@echo "... image_rev_tcp_mask.i"
 	@echo "... image_rev_tcp_mask.s"
 	@echo "... image_send_tcp.o"
 	@echo "... image_send_tcp.i"
 	@echo "... image_send_tcp.s"
+	@echo "... image_send_tcp_ask.o"
+	@echo "... image_send_tcp_ask.i"
+	@echo "... image_send_tcp_ask.s"
 	@echo "... image_send_tcp_mask.o"
 	@echo "... image_send_tcp_mask.i"
 	@echo "... image_send_tcp_mask.s"

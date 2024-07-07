@@ -69,4 +69,14 @@ target_link_libraries(image_send_tcp_mask
   ${OpenCV_LIBS}
 )
 
+add_executable (image_rev_tcp_ask image_rev_tcp_ask)
+target_link_libraries(image_rev_tcp_ask
+  ${OpenCV_LIBS}
+)
+
+add_executable (image_send_tcp_ask image_send_tcp_ask)
+target_link_libraries(image_send_tcp_ask
+  ${OpenCV_LIBS}
+)
+
 set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

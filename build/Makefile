@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named image_send_tcp_ask
+
+# Build rule for target.
+image_send_tcp_ask: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 image_send_tcp_ask
+.PHONY : image_send_tcp_ask
+
+# fast build rule for target.
+image_send_tcp_ask/fast:
+	$(MAKE) -f src/CMakeFiles/image_send_tcp_ask.dir/build.make src/CMakeFiles/image_send_tcp_ask.dir/build
+.PHONY : image_send_tcp_ask/fast
+
+#=============================================================================
+# Target rules for targets named image_rev_tcp_ask
+
+# Build rule for target.
+image_rev_tcp_ask: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 image_rev_tcp_ask
+.PHONY : image_rev_tcp_ask
+
+# fast build rule for target.
+image_rev_tcp_ask/fast:
+	$(MAKE) -f src/CMakeFiles/image_rev_tcp_ask.dir/build.make src/CMakeFiles/image_rev_tcp_ask.dir/build
+.PHONY : image_rev_tcp_ask/fast
+
+#=============================================================================
 # Target rules for targets named image_rev_tcp_mask
 
 # Build rule for target.
@@ -170,6 +196,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... image_send_tcp_ask"
+	@echo "... image_rev_tcp_ask"
 	@echo "... image_rev_tcp_mask"
 	@echo "... image_send_tcp_mask"
 	@echo "... image_send_tcp"
